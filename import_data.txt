@@ -1,0 +1,25 @@
+
+pyspark --packages org.mongodb.spark:mongo-spark-connector_2.11:2.3.1
+
+### 1. Đưa dữ liệu vào MongoDB
+
+mongosh
+use dep303_asm01
+db.createCollection("Questions")
+db.createCollection("Answers")
+exit()
+
+mongoimport --type csv -d dep303_asm01 -c Questions --headerline --drop /home/vpnsaigon/Desktop/defunix/06_du_lieu_voi_spark/assignments/Assignments01/Questions.csv
+mongoimport --type csv -d dep303_asm01 -c Answers --headerline --drop /home/vpnsaigon/Desktop/defunix/06_du_lieu_voi_spark/assignments/Assignments01/Answers.csv
+
+mongosh
+show dbs
+use dep303_asm01
+
+db.Questions.findOne()
+db.Answers.findOne()
+
+db.Questions.find().limit(5)
+db.Answers.findOne().limit(5)
+
+
